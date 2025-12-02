@@ -46,32 +46,24 @@ public class TaskManagementCLI {
 
             try {
                 switch (action) {
-                    case "create":
                     case "c":
                         createTask();
                         break;
-                    case "update":
                     case "u":
                         updateTask();
                         break;
-                    case "delete":
                     case "d":
                         deleteTask();
                         break;
-                    case "list":
                     case "l":
                         listTasks();
                         break;
-                    case "get":
                     case "g":
                         getTask();
                         break;
-                    case "help":
                     case "h":
                         printHelp();
                         break;
-                    case "exit":
-                    case "quit":
                     case "q":
                         running = false;
                         System.out.println("Goodbye!");
