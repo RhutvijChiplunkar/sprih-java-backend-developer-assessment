@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        MAVEN_IMAGE: maven:4.0.0-rc-5-ibm-semeru-25-noble
+    image: task-management:1.0
+    stdin_open: true      # keep STDIN open
+    tty: true
+    environment:
+      - MAIN_CLASS=com.taskmanagement.cli.TaskManagementCLI
+    volumes:
+      - ./data:/app/data
+    restart: "no"
