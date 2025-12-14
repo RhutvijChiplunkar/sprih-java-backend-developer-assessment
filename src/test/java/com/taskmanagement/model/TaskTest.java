@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -142,10 +141,10 @@ class TaskTest {
                 .build();
 
         Task updates = new Task.Builder()
-                .title("")
-                .priority(null)
-                .status(null)
-                .build();
+                .titleForUpdate("")
+                .priorityForUpdate(null)
+                .statusForUpdate(null)
+                .buildForUpdate();
 
         Task updated = original.updateWith(updates);
 

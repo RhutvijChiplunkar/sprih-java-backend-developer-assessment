@@ -53,10 +53,10 @@ public class Task {
         if (updates.title != null && !updates.title.isEmpty()) {
             builder.title(updates.title);
         }
-        if (updates.description != null) {
+        if (updates.description.isPresent()) {
             builder.description(updates.description.orElse(null));
         }
-        if (updates.dueDate != null) {
+        if (updates.dueDate.isPresent()) {
             builder.dueDate(updates.dueDate.orElse(null));
         }
         if (updates.priority != null) {
@@ -128,6 +128,11 @@ public class Task {
             return this;
         }
 
+        public Builder titleForUpdate(String title) {
+            this.title = title == null ? null : title.trim();
+            return this;
+        }
+
         public Builder description(String description) {
             this.description = description == null || description.trim().isEmpty() 
                 ? Optional.empty() 
@@ -148,10 +153,20 @@ public class Task {
             return this;
         }
 
+        public Builder priorityForUpdate(Priority priority) {
+            this.priority = priority;
+            return this;
+        }
+
         public Builder status(Status status) {
             if (status == null) {
                 throw new IllegalArgumentException("Status cannot be null for the task");
             }
+            this.status = status;
+            return this;
+        }
+
+        public Builder statusForUpdate(Status status) {
             this.status = status;
             return this;
         }
@@ -163,6 +178,11 @@ public class Task {
             if (priority == null) {
                 throw new IllegalArgumentException("Priority is required for the task");
             }
+            return new Task(this);
+        }
+
+        public Task buildForUpdate() {
+            // Allow building with null/empty values for update scenarios
             return new Task(this);
         }
     }
